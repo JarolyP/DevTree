@@ -1,15 +1,13 @@
 import mongoose from 'mongoose';
+import colors from 'colors';
 
 export const connectDB = async () => {
     try {
-        const url = 'mongodb+srv://root:root@cluster0.tsbvx.mongodb.net/linktree_node_typescript'
-        const { connection } = await mongoose.connect(url)
-        const url2 = '${connection.host}:${connection.port}'
-
-        console.log("MongoDB Conectado en ${url2}");
-    }
-    catch (err) {
-        console.log(err.message);
+        const { connection } = await mongoose.connect(process.env.MONGO_URI)
+        const url = `${connection.host}:${connection.port}`
+        console.log(colors.bgGreen.white.bold(`MongoDB Conectado en ${url}`));
+    } catch (err) {
+        console.log(colors.bgRed.white.bold(err.message));
         process.exit(1)
     }
 }

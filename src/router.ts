@@ -1,9 +1,8 @@
 import { Router } from "express";
-
 const router = Router();
 
 router.post("/auth/register", (req, res) => {
-  console.log("Desde registro...");
+  console.log(req.body);
 });
 
 export default router
